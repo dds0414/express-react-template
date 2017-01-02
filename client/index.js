@@ -3,13 +3,16 @@
  */
 import React from 'react'
 import {render} from 'react-dom'
+import configStore from './store/configStore'
+import Root from './containers/Root'
 
+
+const rootElement = document.getElementById('root');
+const store = configStore();
 
 
 render(
-    <divs>
-       sssname22eee
-    </divs>,
-    document.getElementById('root')
+    <Root store={store} /> ,
+    rootElement
 );
 
