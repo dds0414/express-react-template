@@ -57,11 +57,6 @@ module.exports = {
         //     processOutput: function (assets) {
         //         return 'window.WEBPACK_ASSETS = ' + JSON.stringify(assets);
         //     }
-        // }),
-        // new webpack.DefinePlugin({
-        //     "process.env": {
-        //         NODE_ENV: JSON.stringify("production")
-        //     }
         // })
     ]
 };
@@ -77,14 +72,18 @@ if (process.env.NODE_ENV === 'production') {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        }),
     ])
 }else{
     module.exports.devtool = 'cheap-module-source-map';
     module.exports.entry = (module.exports.entry || []).concat([
         'webpack-hot-middleware/client?reload=true'
     ])
-
 }
 
 

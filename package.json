@@ -3,8 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=dev webpack-dev-server --profile --progress --colors --hot  --inline -d",
-    "build": "NODE_ENV=production webpack --profile --progress --colors"
+    "start": "NODE_ENV=dev node bin/www",
+    "start2": "NODE_ENV=dev webpack-dev-server --profile --progress --colors --hot  --inline -d",
+    "clearFile": "rm -rf ./public/js",
+    "prewebpackAll": "npm run clearFile",
+    "webpackAll": "NODE_ENV=production webpack --profile --progress --colors",
+    "prebuild" : "npm run webpackAll",
+    "build": "NODE_ENV=production node bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.2",

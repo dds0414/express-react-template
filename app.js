@@ -14,15 +14,17 @@ var index = require('./routes/index');
 
 var app = express();
 
-var compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler,
-    {   noInfo: true,
-        stats: {
-            colors: true
-        },
-        publicPath: config.output.publicPath
-    }));
-app.use(webpackHotMiddleware(compiler));
+if(process.env.NODE_ENV !== 'production'){
+    var compiler = webpack(config);
+    app.use(webpackDevMiddleware(compiler,
+        {   noInfo: true,
+            stats: {
+                colors: true
+            },
+            publicPath: config.output.publicPath
+        }));
+    app.use(webpackHotMiddleware(compiler));
+}
 
 
 // view engine setup
